@@ -63,7 +63,7 @@ const Dashboard = ({user}:HomeProps) => {
 
   async function handleShare(id:string){
   await navigator.clipboard.writeText(
-    `${process.env.NEXT_PUBLIC_URL}/tasks/${id}`);
+    `${process.env.NEXT_PUBLIC_URL}/task/${id}`);
     alert("url copiada com sucesso")
   }
   async function handleDeleteTask(id:string){
@@ -136,7 +136,7 @@ const Dashboard = ({user}:HomeProps) => {
             <div className={style.taskContent}>
               {item.public ?
               (
-                <Link href={`/tasks/${item.id}`}>
+                <Link href={`/task/${item.id}`}>
               <p>{item.tarefas}</p>
                 </Link>
               ):(
