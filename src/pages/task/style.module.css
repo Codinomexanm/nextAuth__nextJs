@@ -31,6 +31,7 @@
   margin: 18px 0;
   width: 100%;
 }
+
 .Button{
   width: 100%;
   padding: 12px 0;
@@ -40,4 +41,34 @@
   background-color: #3183ff;
   font-size: 18px;
   cursor: pointer;
+}
+.Button:disabled{
+  cursor: not-allowed;
+  background-color: rgba(49,131,255,0.604);
+}
+.comment{
+  border: 1px solid #ddd;
+  padding: 14px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+
+}
+.headComment{
+  display: flex;
+  align-items: center;
+}
+.commentLabel{
+  background-color: #ccc;
+  padding: 4px 8px;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+.ButtonTrash{
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.comment p{
+  margin-top: 14px;
+  white-space: pre-wrap;
 }

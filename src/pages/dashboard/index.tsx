@@ -5,7 +5,7 @@ import { GetServerSideProps } from 'next';
 import { getSession } from "next-auth/react";
 import TextArea from '@/components/textArea';
 import {FiShare2} from 'react-icons/fi'
-import {FaTrash} from 'react-icons/fa'
+import {FaTrash,FaCopy} from 'react-icons/fa'
 
 import {db} from '../../services/firebaseConections'
 import { addDoc, collection, query, orderBy,where,onSnapshot, doc,deleteDoc} from 'firebase/firestore'
@@ -61,9 +61,9 @@ const Dashboard = ({user}:HomeProps) => {
   };
 
 
-  async function handleShare(id:string){
+  async function handleShare(tarefas:string){
   await navigator.clipboard.writeText(
-    `${process.env.NEXT_PUBLIC_URL}/task/${id}`);
+    tarefas);
     alert("url copiada com sucesso")
   }
   async function handleDeleteTask(id:string){
@@ -125,8 +125,8 @@ const Dashboard = ({user}:HomeProps) => {
            {item.public && (
              <div className={style.tagContainer}>
              <label className={style.tag}>PUBLICO</label>
-             <button className={style.shareButton} onClick={()=>handleShare(item.id)}>
-               <FiShare2
+             <button className={style.shareButton} onClick={()=>handleShare(item.tarefas)}>
+               <FaCopy
                size={22}
                color='#3183ff'
                />
