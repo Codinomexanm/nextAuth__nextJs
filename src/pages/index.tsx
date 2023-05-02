@@ -5,15 +5,55 @@ import Image from 'next/image'
 
 import HeroImg from '../../public/assets/hero.png'
 import { GetStaticProps } from 'next'
-import {collection,getDocs} from "firebase/firestore"
+import {collection,getDocs, onSnapshot, orderBy, query} from "firebase/firestore"
 import {db} from "../services/firebaseConections"
+import { FaCopy } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 interface homeProps{
   posts:number,
   comments:number
 }
+interface TaskProps {
+  id:string,
+  created: Date,
+  public: boolean,
+  tarefas: string,
+  user: string
+}
+
 export default function Home({posts,comments}:homeProps) {
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
+  useEffect(()=>{
+    async function loadTarefas() {
+     const tarefasRef = collection(db, "tarefas");
+     const q = query(
+      tarefasRef,
+      orderBy("created","desc"),
+     )
+     onSnapshot(q,(onSnapshot)=>{
+      let lista = [] as TaskProps[];
+      onSnapshot.forEach((doc)=>{
+        lista.push({
+          id:doc.id,
+          tarefas:doc.data().tarefas,
+          created:doc.data().created,
+          user:doc.data().user,
+          public: doc.data().public
+        })
+      })
+      setTasks(lista);
+      
+     })
+    }
+    loadTarefas();
+  },[]);
+
+  async function handleShare(tarefas:string){
+    await navigator.clipboard.writeText(
+      tarefas);
+    }
   return (
     <div className={style.container}>
     <Head>
@@ -36,7 +76,28 @@ export default function Home({posts,comments}:homeProps) {
           <section className={style.box}>
             <span> +{comments} comentários</span>
           </section>
-        </div> 
+        </div>
+        <section className={style.taskContainer}>
+          <h1>Minhas tarefas</h1>
+
+          {tasks.map((item)=>(
+            <article key={item.id} className={style.task}>
+           {item.public && (
+             <div className={style.tagContainer}>
+             <button className={style.shareButton} onClick={()=>handleShare(item.tarefas)}>
+               <FaCopy
+               size={22}
+               color='#3183ff'
+               />
+             </button>
+              <div className={style.taskContent}>
+                  <p>{item.tarefas}</p>
+              </div>
+           </div>
+           )}
+          </article>
+          ))}
+        </section> 
       </div>
     </main>
     </div>
