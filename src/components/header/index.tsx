@@ -16,6 +16,9 @@ const Header = () => {
         className={style.hero}
         alt='logo tarefa'
         src={HeroImg}
+        width={150}
+        height={150}
+        quality={100}
         priority
         /></h1>
         </Link>
