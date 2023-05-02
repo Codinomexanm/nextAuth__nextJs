@@ -11,13 +11,13 @@ const Header = () => {
     <section className={style.content}>
       <nav className={style.nav}>
         <Link href='/'>
-        <Image
-        className={style.hero}
-        alt='logo tarefa'
-        src={HeroImg}
-        height={120}
-        priority
-        />
+          <Image
+          className={style.hero}
+          alt='logo tarefa'
+          src={HeroImg}
+          height={120}
+          priority
+          />
         </Link>
         {session?.user && (<Link href='/dashboard' className={style.link}>Meu Painel</Link>)}
       </nav>
