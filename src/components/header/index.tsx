@@ -2,6 +2,8 @@ import React from 'react'
 import style from './style.module.css'
 import Link from 'next/link'
 import {useSession,signIn,signOut} from 'next-auth/react'
+import Image from 'next/image'
+import HeroImg from '../../../public/assets/hero1.png'
 const Header = () => {
    const {data:session, status} = useSession();
   return (
@@ -9,7 +11,13 @@ const Header = () => {
     <section className={style.content}>
       <nav className={style.nav}>
         <Link href='/'>
-        <h1 className={style.logo}>Tarefas<span>+</span></h1>
+        <h1 className={style.logo}>
+        <Image
+        className={style.hero}
+        alt='logo tarefa'
+        src={HeroImg}
+        priority
+        /></h1>
         </Link>
         {session?.user && (<Link href='/dashboard' className={style.link}>Meu Painel</Link>)}
       </nav>

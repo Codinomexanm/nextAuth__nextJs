@@ -3,7 +3,7 @@ import style from '../../styles/home.module.css'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import HeroImg from '../../public/assets/hero.png'
+import HeroImg from '../../public/assets/hero1.png'
 import { GetStaticProps } from 'next'
 import {collection,getDocs, onSnapshot, orderBy, query} from "firebase/firestore"
 import {db} from "../services/firebaseConections"

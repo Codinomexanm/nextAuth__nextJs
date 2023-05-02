@@ -137,7 +137,7 @@ const Dashboard = ({user}:HomeProps) => {
               {item.public ?
               (
                 <Link href={`/task/${item.id}`}>
-              <p>{item.tarefas}</p>
+                   <p>{item.tarefas}</p>
                 </Link>
               ):(
                 <p>{item.tarefas}</p>

@@ -1,5 +1,5 @@
 .container{
-  background-color: #0f0f0f;
+  background-color: #fff;
   width: 100%;
   height:auto ;
   min-width:calc(100vh - 76px) ;
@@ -19,9 +19,10 @@
   object-fit: contain;
   width: auto;
   height: auto;
+  filter: drop-shadow(1px 5px 5px blue) saturate(3);
 }
 .title{
-  color: #fff;
+  color: black;
   text-align: center;
   margin: 28px;
   line-height: 150%;
@@ -69,17 +70,17 @@
 }
 .taskContainer a{
   text-decoration: none;
-  color:#fff;
+  color: black;
 }
 
 .taskContainer h1{
-  color:#fff;
+  color: black;
   text-align: center;
   font-size: 32px;
   margin-bottom: 14px;
 }
 .taskContent{
-  color:#fff;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
